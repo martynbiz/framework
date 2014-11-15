@@ -8,7 +8,7 @@ Also, it shared it's routes and templates with the client side Javascript. The f
 
 ##Composer (coming soon)
 
-'''
+```
 {
     "require": {
         "martynbiz/framework": "master-dev"
