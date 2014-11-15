@@ -1,0 +1,16 @@
+{
+    "autoload": {
+        "classmap": [
+            "library"
+        ]
+    },
+    "require": {
+        "robmorgan/phinx": "*",
+        "bramus/router": "dev-master",
+        "xamin/handlebars.php": "dev-master",
+        "martynbiz/database": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.3.*"
+    }
+}
