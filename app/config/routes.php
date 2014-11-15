@@ -8,13 +8,13 @@ return array(
     'routes' => array(
         '/' => array(
             'GET' => array(
-                'controller' => 'index',
+                'controller' => 'home',
                 'action' => 'index',
             ),
         ),
         '/about' => array(
             'GET' => array(
-                'controller' => 'index',
+                'controller' => 'home',
                 'action' => 'about',
             ),
         ),

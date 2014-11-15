@@ -24,7 +24,7 @@ class Application
     {
         // set services from config
         $this->service('Router', new Router());
-        $this->service('Dispatcher', new Dispatcher());
+        $this->service('Dispatcher', new Dispatcher($this));
         
         // init routes - then discard routes from config
         if (isset($config['routes'])) {
@@ -55,7 +55,7 @@ class Application
     * 
     * @return mixed Config value(s)
     */
-    public function config($config, $value=null)
+    public function config($config=null, $value=null)
     {
         if (is_array($config)) { // multiple set
             
@@ -72,8 +72,10 @@ class Application
             // return config
             if(isset($this->config[$config]))
                 return $this->config[$config];
-            
         }
+        
+        // return all
+        return $this->config;
     }
     
     /**
@@ -115,6 +117,7 @@ class Application
         // get services
         $router = $this->service('Router');
         $dispatcher = $this->service('Dispatcher');
+        $config = $this->config();
         
         // set the environment from $_SERVER, $_POST, $environment, ...
         $environment = array_merge($_SERVER, array(
@@ -127,7 +130,7 @@ class Application
         $route = $router->getRoute($url, $method);
         
         // dispatch the route
-        $dispatcher->loadRoute($route);
+        $dispatcher->loadRoute($route, $this);
     }
     
 }

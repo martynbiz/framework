@@ -20,6 +20,6 @@ function loadConfig($configDirs)
 }
 
 $config = loadConfig(array(
-    'app/config/',
-    'app/config/' . getenv('APPLICATION_ENV') . '/',
+    APPLICATION_PATH . '/config/',
+    APPLICATION_PATH . '/config/' . getenv('APPLICATION_ENV') . '/',
 ));

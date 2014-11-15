@@ -12,5 +12,6 @@ namespace MartynBiz;
 */
 interface DispatcherInterface
 {
+    public function __construct(\MartynBiz\Application $app);
     public function loadRoute($route);
 }

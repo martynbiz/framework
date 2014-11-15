@@ -31,6 +31,17 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(true, $app->config('test'));
     }
     
+    function testConfigMethodGetsAllVariablesWhenNoParametersPassed()
+    {
+        $config = array(
+            'test' => true,
+        );
+        
+        $app = new MartynBiz\Application($config);
+        
+        $this->assertEquals($config, $app->config());
+    }
+    
     function testConfigMethodSetsVariable()
     {
         $app = new MartynBiz\Application();

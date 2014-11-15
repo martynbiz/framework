@@ -8,3 +8,11 @@ chdir(dirname('../'));
 // require composer autoloader for loading classes
 require 'vendor/autoload.php';
 
+// for testing and mocking controllers
+class HomeController extends MartynBiz\Controller
+{
+    public function showAction($id)
+    {
+        
+    }
+}

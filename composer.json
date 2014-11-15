@@ -1,7 +1,10 @@
 {
     "autoload": {
         "classmap": [
-            "library"
+            "library",
+            "app/controllers",
+            "app/models",
+            "app/views"
         ]
     },
     "require": {
