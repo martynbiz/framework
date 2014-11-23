@@ -8,10 +8,9 @@
         ]
     },
     "require": {
-        "robmorgan/phinx": "*",
-        "bramus/router": "dev-master",
         "xamin/handlebars.php": "dev-master",
-        "martynbiz/database": "dev-master"
+        "martynbiz/database": "dev-master",
+        "robmorgan/phinx": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "4.3.*"

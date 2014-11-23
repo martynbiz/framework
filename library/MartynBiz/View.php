@@ -2,24 +2,41 @@
 
 namespace MartynBiz;
 
-use Handlebars\Handlebars;
-
-class View extends \Slim\View
+class View implements ViewInterface
 {
-    protected $layout;
-    protected $engine;
+    /**
+    * App instance so we can access the template/layout paths
+    */ 
+    protected $app;
     
-    public function __construct($layout)
+    /**
+    * Layout folder/file e.g. home/master.php. Different controllers can set different layouts
+    */ 
+    protected $layout;
+    
+    /**
+    * Template folder/file e.g. home/index.php. Set in Application::run so we don't need to pass it to the layout
+    */ 
+    protected $template;
+    
+    /**
+     * Constructor.
+     *
+     * @param $layout string Name of the layout file (path?)
+     *
+     * @param $app MartynBiz\Application App instance so we can access config and services
+     * @return void
+     * @author Martyn Bissett
+     **/
+    public function init($app)
     {
-        $this->layout = $layout;
-        $this->engine = new Handlebars;
-        
-        parent::__construct();
+        $this->app = $app;
     }
     
     /**
-     * Set the layout path
+     * Set the layout path. Allows us to change the layout in any controller
      *
+     * @param $layout string Name of the layout file (path?)
      * @return void
      * @author Martyn Bissett
      **/
@@ -29,18 +46,66 @@ class View extends \Slim\View
     }
     
     /**
-     * Set the layout path
+     * Set the template path. 
      *
+     * @param $template string Name of the template folder/file
      * @return void
      * @author Martyn Bissett
      **/
-    public function embed($templatePathname, $data)
+    public function setTemplate($template)
     {
-        ob_start();
-        require $templatePathname;
-        $template = ob_get_clean();
+        $this->template = $template;
+    }
+    
+    /**
+     * Get full template path e.g. /var/www/...
+     *
+     * @param $template string File/folder of template e.g. home/index.php
+     * @return void
+     * @author Martyn Bissett
+     **/
+    public function getTemplatePath()
+    {
+        $templatesDir = $this->app->config('templatesDir');
         
-        return $this->engine->render($template, $data );
+        // return full template path
+        return $templatesDir . '/' . $this->template;
+    }
+    
+    /**
+     * Get full layout path e.g. /var/www/...
+     *
+     * @param $layout string File/folder of template e.g. home/index.php
+     * @return void
+     * @author Martyn Bissett
+     **/
+    public function getLayoutPath()
+    {
+        $layoutsDir = $this->app->config('layoutsDir');
+        
+        // return full template path
+        return $layoutsDir . '/' . $this->layout;
+    }
+    
+    /**
+     * Require the template allows us to use PHP includes within in. This 
+     * will return the template engine compiled result of the template and data
+     * Used within the layout e.g. $this->yield($data)
+     *
+     * @param $data Data to compile template with
+     * @return string The result of the template and data being compiled
+     * @author Martyn Bissett
+     **/
+    public function embed($data=array())
+    {
+        // set full template path
+        $templatePath = $this->getTemplatePath($this->template);
+        
+        // get the template. This method allows us to use PHP code (e.g. include) 
+        // within the template files. file_get_contents wouldn't allow that.
+        ob_start();
+        require $templatePath;
+        return ob_get_clean();
     }
     
     /**
@@ -49,23 +114,23 @@ class View extends \Slim\View
      * @return void
      * @author Martyn Bissett
      **/
-    public function render($template, $data=array())
+    public function render($data=array())
     {
-        $layoutPathname = $this->getTemplatePathname($this->layout);
-        if (!is_file($layoutPathname)) {
-            throw new \RuntimeException("View cannot render `$this->layout` because the template does not exist");
+        // ** test exception
+        $layoutPath = $this->getLayoutPath();
+        if (!is_file($layoutPath)) {
+            throw new \RuntimeException('View cannot render layout ' . $this->layout . ' because the file does not exist');
         }
         
-        $templatePathname = $this->getTemplatePathname($template);
-        if (!is_file($templatePathname)) {
-            throw new \RuntimeException("View cannot render `$template` because the template does not exist");
+        // ** test exception
+        $templatePath = $this->getTemplatePath($template);
+        if (!is_file($templatePath)) {
+            throw new \RuntimeException('View cannot render template ' . $this->template . ' because the file does not exist');
         }
-
-        $data = array_merge($this->data->all(), (array) $data);
-        extract($data);
+        
+        // 
         ob_start();
-        require $layoutPathname;
-
+        require $layoutPath;
         return ob_get_clean();
     }
 }

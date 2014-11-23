@@ -12,4 +12,5 @@ require realpath(APPLICATION_PATH . '/config.php');
 $app = new MartynBiz\Application($config);
 
 // Run it!
-$app->run();
+$app->bootstrap()
+    ->run();

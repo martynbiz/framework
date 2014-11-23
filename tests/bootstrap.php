@@ -11,6 +11,11 @@ require 'vendor/autoload.php';
 // for testing and mocking controllers
 class HomeController extends MartynBiz\Controller
 {
+    public function indexAction()
+    {
+        
+    }
+    
     public function showAction($id)
     {
         
