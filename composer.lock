@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "432d24c798dfce0df38dbf4598854fc0",
+    "hash": "0b4abbb2fcd9c0b68c51a469848c0edb",
     "packages": [
         {
             "name": "martynbiz/database",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/martynbiz/database.git",
-                "reference": "ad25dca20b1c8f28c09ff55ca4ad44d27f420479"
+                "reference": "94651f3e5c6ad3e25f82c8487abf0a136f071065"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/martynbiz/database/zipball/ad25dca20b1c8f28c09ff55ca4ad44d27f420479",
-                "reference": "ad25dca20b1c8f28c09ff55ca4ad44d27f420479",
+                "url": "https://api.github.com/repos/martynbiz/database/zipball/94651f3e5c6ad3e25f82c8487abf0a136f071065",
+                "reference": "94651f3e5c6ad3e25f82c8487abf0a136f071065",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +52,53 @@
                 "row gateway",
                 "table gateway"
             ],
-            "time": "2014-11-12 15:10:56"
+            "time": "2014-11-24 06:22:27"
+        },
+        {
+            "name": "martynbiz/mvc",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/martynbiz/mvc.git",
+                "reference": "cf519f2b9ea9e1a427a55f62b11537f247a693ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/martynbiz/mvc/zipball/cf519f2b9ea9e1a427a55f62b11537f247a693ef",
+                "reference": "cf519f2b9ea9e1a427a55f62b11537f247a693ef",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "MartynBiz": "library"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martyn Bissett",
+                    "email": "martynbissett@yahoo.co.uk",
+                    "homepage": "http://ma.rtyn.biz",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP MVC framework used for some of my projects",
+            "homepage": "http://github.com/martynbiz/mvc",
+            "keywords": [
+                "mvc",
+                "php"
+            ],
+            "time": "2014-11-24 13:44:55"
         },
         {
             "name": "robmorgan/phinx",
@@ -1102,8 +1148,9 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "xamin/handlebars.php": 20,
-        "martynbiz/database": 20
+        "martynbiz/mvc": 20,
+        "martynbiz/database": 20,
+        "xamin/handlebars.php": 20
     },
     "prefer-stable": false,
     "platform": [],

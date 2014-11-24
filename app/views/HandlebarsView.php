@@ -2,7 +2,7 @@
 
 namespace App\View;
 
-use MartynBiz\View;
+use MartynBiz\MVC\View;
 
 class HandlebarsView extends View
 {

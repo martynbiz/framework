@@ -5,7 +5,7 @@ namespace App\Controller;
 /**
 * Handkes homepage, about etc
 */
-class BaseController extends \MartynBiz\Controller
+class BaseController extends \MartynBiz\MVC\Controller
 {
     public function getCurrentUser()
     {

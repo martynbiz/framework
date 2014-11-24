@@ -3,7 +3,7 @@
 // set models
 $dbConfig = $this->config('db');
 
-$databaseAdapter = new \MartynBiz\Database\Adapter($dbConfig);
+$databaseAdapter = new \MartynBiz\MVC\Database\Adapter($dbConfig);
 
 // set the models in service
 $this->service(array(

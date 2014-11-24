@@ -1,15 +1,15 @@
 {
     "autoload": {
         "classmap": [
-            "library",
             "app/controllers",
             "app/models",
             "app/views"
         ]
     },
     "require": {
-        "xamin/handlebars.php": "dev-master",
+        "martynbiz/mvc": "dev-master",
         "martynbiz/database": "dev-master",
+        "xamin/handlebars.php": "dev-master",
         "robmorgan/phinx": "*"
     },
     "require-dev": {

@@ -5,7 +5,7 @@ namespace App\Model;
 /**
 * 
 */
-class User extends \MartynBiz\Database\Table
+class User extends \MartynBiz\MVC\Database\Table
 {
     protected $tableName = 'users';
     

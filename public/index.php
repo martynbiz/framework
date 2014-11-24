@@ -9,7 +9,7 @@ require realpath(APPLICATION_PATH . '/../vendor/autoload.php');
 
 require realpath(APPLICATION_PATH . '/config.php');
 
-$app = new MartynBiz\Application($config);
+$app = new MartynBiz\MVC\Application($config);
 
 // Run it!
 $app->bootstrap()
