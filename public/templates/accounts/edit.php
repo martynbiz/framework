@@ -5,7 +5,7 @@
 </ol>
 
 <form method="POST" action="/accounts/{{ id }}" name="accounts_update">
-    <?php include '_form.phtml'; ?>
+    <?php include '_form.php'; ?>
     
     <input type="hidden" name="_METHOD" value="PUT"/>
     

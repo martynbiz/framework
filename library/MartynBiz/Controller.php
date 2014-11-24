@@ -21,6 +21,11 @@ class Controller
     {
         // set the view layout based on the controllers own settings
         $view = $app->service('View');
+        
+        if(! $view instanceof \MartynBiz\View) {
+            throw new \Exception('View service not instance of View');
+        }
+        
         $view->setLayout( $this->layout );
         
         $this->app = $app;

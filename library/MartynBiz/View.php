@@ -88,6 +88,25 @@ class View implements ViewInterface
     }
     
     /**
+    * Is this an AJAX request?
+    * @return bool
+    */
+    public function isAjax()
+    {
+        // if ($this->params('isajax')) {
+        //     return true;
+        // }
+        
+        $requestHeaders = getallheaders();
+        
+        if (isset($requestHeaders['X-Requested-With']) && $requestHeaders['X-Requested-With'] === 'XMLHttpRequest') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    /**
      * Require the template allows us to use PHP includes within in. This 
      * will return the template engine compiled result of the template and data
      * Used within the layout e.g. $this->yield($data)

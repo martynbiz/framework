@@ -4,7 +4,7 @@
 </ol>
 
 <form method="POST" action="/accounts" name="accounts_create">
-    <?php include '_form.phtml'; ?>
+    <?php include '_form.php'; ?>
     
     <input type="submit" name="submit" value="Save" class="btn btn-primary" role="button">
 </form>

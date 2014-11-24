@@ -46,4 +46,20 @@ class HandlebarsView extends View
         // compile the template and the data, and return
         return $this->engine->render( $template, $data );
     }
+    
+    /**
+     * Render the template within the layout
+     *
+     * @return void
+     * @author Martyn Bissett
+     **/
+    public function render($data=array())
+    {
+        // if this is an XHR request, return json **test
+        if ($this->isAjax()) {
+            return json_encode($data);
+        }
+        
+        return parent::render($data);   
+    }
 }

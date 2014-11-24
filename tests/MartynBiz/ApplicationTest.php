@@ -132,6 +132,43 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
         $this->assertTrue( is_null($service) );
     }
     
+    
+    
+    
+    // function testEnvironmentMethodReturnsNullWhenInvalidNameIsPassed()
+    // {
+    //     $app = new MartynBiz\Application();
+        
+    //     $environment = $app->environment('idontexist');
+        
+    //     $this->assertTrue( is_null($environment) );
+    // }
+    
+    // function testEnvironmentMethodSetsVariableWhenNameAndEnvironmentIsPassed()
+    // {
+    //     $app = new MartynBiz\Application();
+        
+    //     $app->environment('test', true);
+        
+    //     $this->assertEquals(true, $app->environment('test'));
+    // }
+    
+    // function testEnvironmentMethodSetsMultipleEnvironmentsWhenArrayIsPassed()
+    // {
+    //     $app = new MartynBiz\Application();
+        
+    //     $app->environment(array(
+    //         'test' => true,
+    //     ));
+        
+    //     $this->assertEquals(true, $app->environment('test'));
+    // }
+    
+    
+    
+    
+    
+    
     /**
      * @expectedException Exception
      */
@@ -259,8 +296,7 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
             ->method('init');
         
         $viewMock->expects( $this->once() )
-            ->method('render')
-            ->with('home/index.phtml');
+            ->method('render');
         
         $config = array(
             // we must set a valid route to pass to the next stage

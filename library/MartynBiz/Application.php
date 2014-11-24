@@ -18,6 +18,11 @@ class Application
     protected $services = array();
     
     /**
+    * this is the applciation's services
+    */
+    protected $environment = array();
+    
+    /**
     * this is the router for the app
     */
     protected $router;
@@ -52,7 +57,7 @@ class Application
     }
     
     /**
-    * Get or set config. Can support simple data type setting, and multiple setting with array
+    * Get or set config. Can store simple data type setting, and multiple setting with array
     *
     * @param mixed $config Either the value of a single config, an array containing many configs, or blank
     * @param mixed $value Value of the config to set, or blank
@@ -65,7 +70,7 @@ class Application
     }
     
     /**
-    * Get or set service. Can support objects, functions (factory), strings (auto instantiate)
+    * Get or set service. Can store objects, functions (factory), strings (auto instantiate)
     *
     * @param mixed $config Either the value of a single config, an array containing many configs, or blank
     * @param mixed $value Value of the config to set, or blank
@@ -76,6 +81,19 @@ class Application
     {
         return $this->setResource( $this->services, $service, $value );
     }
+    
+    /**
+    * Get or set environment. Intended to store strings only (althoug can store anything)
+    *
+    * @param mixed $config Either the value of a single config, an array containing many configs, or blank
+    * @param mixed $value Value of the config to set, or blank
+    * 
+    * @return mixed Config value(s)
+    */
+    // public function environment($environment, $value=null)
+    // {
+    //     return $this->setResource( $this->environment, $environment, $value );
+    // }
     
     /**
     * Config and services are essentially the same so we can use a common method for those
@@ -147,6 +165,9 @@ class Application
             'POST' => $_POST,
         ), $environment);
         
+        // load the environment into memory so that view and controller have access
+        // $this->environment($environment);
+        
         // get the route for this url
         $url = (isset($environment['PATH_INFO'])) ? $environment['PATH_INFO'] : $environment['REQUEST_URI'];
         $method = $environment['REQUEST_METHOD'];
@@ -189,7 +210,7 @@ class Application
         
         // pass the view an instance of the app
         $view->init($this);
-        $view->setTemplate( $route['controller'] . '/' . $route['action'] . '.phtml' );
+        $view->setTemplate( $route['controller'] . '/' . $route['action'] . '.php' );
         
         echo $view->render($data);
     }

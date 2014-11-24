@@ -1,14 +1,14 @@
 #Introduction
 
-This is a PHP MVC framework built to be simple to use yet flexible enough to alter where needed. It relies heay upon dependency injection to allow components to swapped out and replaced. This is very well suited to unit testing or where a component needs to be altered.
+This is a PHP MVC framework built to be simple to use yet flexible enough to alter where needed. It relies upon dependency injection to allow components to swapped out and replaced. This is very well suited to unit testing.
 
-Also, it shared it's routes and templates with the client side Javascript. The framework will automatically provide everything the front end needs to load templates using AJAX for much faster page loads. It also works fully without JavaScript falling back to traditional page loads to ensure that the site doesn't hand with JavaScript errors.
+Also, it shares it's routes and templates with the client side Javascript. The framework will automatically provide everything the front end needs to load templates using AJAX for much faster page loads. It also works fully without JavaScript falling back to traditional page loads to ensure that the site doesn't hand with JavaScript errors.
 
 #What's new?
 
 - Shared templates between the server and front end
 - Service container which handles factories
-- Mock environments
+- Mock environments for unit tests
 - Powerful ORM (optional)
 - Simple, flexible means to setting configuration
 
@@ -158,4 +158,4 @@ And that's it. The skeleton app has everything it needs to handle even the templ
 - create/test App\View\Handlebars
 - Composer
 - Validation
-- Security - escaping, xsfr
+- Security - xsfr
