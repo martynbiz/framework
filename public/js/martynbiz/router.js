@@ -53,7 +53,9 @@ martynbiz.router = function(ajax) {
             } else {
                 
                 // right trim pattern and url
-                pattern = pattern.replace(/\/+$/, "");
+                if(pattern.length > 1) {
+                    pattern = pattern.replace(/\/+$/, "");
+                }
                 
                 // compare the pattern and the url
                 var re = new RegExp("^" + pattern + "$");

@@ -1,5 +1,11 @@
 // JavaScript Document
 
+/**
+TODO:
+- Strip out jquery stuff, should be stand alone
+- handle checksum
+*/
+
 // define martynbiz namespace
 if(typeof martynbiz === "undefined") martynbiz = {};
 
@@ -40,13 +46,7 @@ martynbiz.dispatch = function($) {
     
     
     
-    
-    
-    
-    
-    
-    
-    
+    var _dispatch = this;
 
     
     
@@ -125,6 +125,18 @@ martynbiz.dispatch = function($) {
                 
                 // check if this is a template or data
                 if(_this_loader.options.template_loader) {
+                    
+                    // check checksum. This is set initially by the backend and
+                    // should be defined 
+                    if(_dispatch.checksum !== _this_loader.data.checksum) {
+                        
+                        // set the checksum
+                        _dispatch.checksum = _this_loader.data.checksum;
+                        
+                        // fresh load
+                        window.location = _this_loader.options.url;
+                    }
+                    
                     // this is a data loader object .. great! first we check if both resources are
                     // ready. if not, we rely upon the template loaded to call here again when it's 
                     // ready and return false for now.
@@ -152,6 +164,7 @@ martynbiz.dispatch = function($) {
                         }
                         
                     } else {
+                        
                         var template_data = _this_loader.data;
                         var data_data = null;
                         var options = _this_loader.options;
@@ -320,7 +333,9 @@ martynbiz.dispatch = function($) {
     
     // public methods
     
-    return {
+    return _dispatch = {
+        checksum: null, // should be set in layout so first load doesn't call fresh load regardless
+        
         register: _register,
         load: _load,
         config: _config,

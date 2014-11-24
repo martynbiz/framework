@@ -186,6 +186,12 @@ class Application
         // shit we can't set the app when we set the service in config so we'll use init()
         // for that purpose
         $controller = $this->service('controllers.' . $route['controller']);
+        
+        // **test
+        // check if controller has been set
+        if(! $controller)
+            throw new \Exception('Controller not found in services.');
+        
         $actionMethod = $route['action'] . 'Action';
         
         $controller->init($this);
@@ -198,7 +204,8 @@ class Application
         // will be an object with a render function
         $data = call_user_func_array(array($controller, $actionMethod), $route['params']);
         
-        // render the view
+        // if we don't get a array back from the above, set as an empty array anyway
+        if(! is_array($data)) $data = array();
         
         // 
         $view = $this->service('View');

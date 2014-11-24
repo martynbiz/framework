@@ -16,18 +16,17 @@
                 
                 // load data and template
                 if(route) {
-                    var dataUrl = this.getAttribute("href"); // ajax call will request json
-                    var templateUrl = "/templates/" + route["controller"] + "/" + route["action"] + ".php";
-                    
-                    // ** move this into load method, just pass route
                     martynbiz.dispatch.load({
-                        template_url: templateUrl,
-                        data_url: dataUrl
+                        template_url: "/templates/" + route["controller"] + "/" + route["action"] + ".php",
+                        data_url: this.getAttribute("href")
                     });
                 }
+                
+                // update the browser url bar
+                history.pushState({}, '', this.getAttribute("href"));
+                
+                e.preventDefault(); 
             }, false);
-            
-            e.preventDefault(); 
         }
     }
     
