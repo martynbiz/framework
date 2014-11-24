@@ -7,10 +7,9 @@
     var _initLinks = function(container) {
         var links = container.getElementsByTagName("a");
         for(var i=0; i<links.length; i++) {
+            
+            // set link click event behaviour
             links[i].addEventListener("click", function(e) {
-                
-                // **move this to bottom, for now i want to debug
-                e.preventDefault(); 
                 
                 // get the route from the router
                 var route = martynbiz.router.match( this.getAttribute("href"), "GET" );
@@ -27,6 +26,8 @@
                     });
                 }
             }, false);
+            
+            e.preventDefault(); 
         }
     }
     
